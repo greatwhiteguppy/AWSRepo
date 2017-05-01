@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"media="screen" title="no title"  charset="utf-8">
+        <title>Remove Course</title>
+    </head>
+    <body>
+        <div id="wrapper">
+            <h2>Are you sure you want to delete the following course?</h2>
+            <p>Name: {{course.name}} </p>
+            <p>Description: {{course.description}} </p>
+            <form action="/" method="get">
+            {% csrf_token %}
+                <button id="no" class="button" type="submit" name="no">No</button>
+            </form>
+            <form action="/courses_app/remove/{{course.id}}" method="post">
+            {% csrf_token %}
+                <button id="yes" class="button" type="submit" name="yes">Yes! I want to delete this</button>
+            </form>
+        </div>
+    </body>
+</html>
